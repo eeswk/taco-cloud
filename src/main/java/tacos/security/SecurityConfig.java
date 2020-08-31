@@ -58,15 +58,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .access("hasRole('ROLE_USER')")
                 .antMatchers("/","/**","/h2-console", "/h2-console/**")
                 .permitAll()
-                .and().headers().frameOptions().sameOrigin()
-                .and().csrf().disable()
+
+                .and()
                 .formLogin()
                 .loginPage("/login")
                 //.loginProcessingUrl("/design")
                 .defaultSuccessUrl("/design", true)
                 .and()
                 .logout()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+
+                .and()
+                    .csrf()
+                    .disable()
+                    .headers().frameOptions().sameOrigin()
+                ;
+
+
 //                .loginProcessingUrl("/authenticate")
 //                .usernameParameter("user")
 //                .passwordParameter("pwd")

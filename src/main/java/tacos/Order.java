@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import tacos.auth.entity.User;
 
 @Data
 @Entity
@@ -49,4 +50,8 @@ public class Order implements Serializable {
     void placedAt() {
         this.placedAt = new Date();
     }
+
+    //User 추가
+    @ManyToOne
+    private User user;
 }
